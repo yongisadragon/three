@@ -1,0 +1,11 @@
+Model Information:
+* title:	Collectable Coin #1 - Alvaro
+* source:	https://sketchfab.com/3d-models/collectable-coin-1-alvaro-14a68ae09e864a9ea7b1ff3e037cf468
+* author:	Jasmine (https://sketchfab.com/jasmineemilycornell)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Collectable Coin #1 - Alvaro" (https://sketchfab.com/3d-models/collectable-coin-1-alvaro-14a68ae09e864a9ea7b1ff3e037cf468) by Jasmine (https://sketchfab.com/jasmineemilycornell) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
