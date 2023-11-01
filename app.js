@@ -1,8 +1,9 @@
-import * as THREE from "../node_modules/three/build/three.module.js";
+import * as THREE from "./node_modules/three/build/three.module.js";
 // import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 // import { GLTFLoader } from "GLTFLoader";
 
-console.log(THREE);
+console.log(OrbitControls);
 
 //*장면
 const scene = new THREE.Scene();
@@ -75,6 +76,17 @@ scene.add(cube1);
 //   scene.add(gltf.scene);
 // });
 
+//OrbitControls는 camera이후에 써줄것.
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.minDistance = 5;
+controls.maxDistance = 15;
+controls.enableDamping = true; //관성
+controls.dampingFactor = 0.03; //관성값 (기본0.05)
+controls.autoRotateSpeed = 10; //회전값 기본 2.0
+// controls.maxPolarAngle = Math.PI / 2; //바닥 이하로 범위 제한
+// controls.enablePan = false; //카메라 위치 이동(키보드, 마우스 패닝) 허가(true 기본)
+controls.update();
+
 //*에니메이션 render
 function animate(time) {
   requestAnimationFrame(animate);
@@ -85,6 +97,7 @@ function animate(time) {
   cube1.rotation.x = time;
   cube1.rotation.y = time;
 
+  controls.update();
   renderer.render(scene, camera);
 }
 animate();
