@@ -31,13 +31,9 @@
       // 장면 만들고
       const scene = new THREE.Scene();
       //브라우저에 '장면을' 렌더링 해주세요. (WebGL을 사용하는 함수)
-      let renderer = new THREE.WebGLRenderer({
-        canvas: document.querySelector("#canvas"),
-        //antialias 계단 현상 완화
-        antialias: true,
-      });
-      // renderer.setSize(window.innerWidth, window.innerHeight);
-      // document.body.appendChild(renderer.domElement);
+      let renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
       //gltf는 색상 인코딩을 이렇게 해줘야 원래 색이 나온다.
       renderer.outputEncoding = THREE.sRGBEncoding;
 
@@ -49,7 +45,7 @@
         1,
         10000
       );
-      camera.position.set(0, 0, 10);
+      camera.position.set(0, 0, 5);
 
       //조명,배경 추가, AmbientLight, PointLight 등
       scene.background = new THREE.Color("white");
