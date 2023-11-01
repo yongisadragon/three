@@ -1,6 +1,8 @@
 import * as THREE from "../node_modules/three/build/three.module.js";
-import { GLTFLoader } from "GLTFLoader";
-console.log(THREE, GLTFLoader);
+// import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
+// import { GLTFLoader } from "GLTFLoader";
+
+console.log(THREE);
 
 //*장면
 const scene = new THREE.Scene();
@@ -67,26 +69,25 @@ cube1.position.x = 2; // 물체 이동
 scene.add(cube1);
 
 //*GLTF로더
-let loader = new GLTFLoader();
-//load는 콜백함수로 들어갈 scene 대상을 파라미터로 받는다. 그 파라미터를 add로 소환해줌.
-loader.load("../shiba/scene.gltf", function (gltf) {
-  scene.add(gltf.scene);
+// let loader = new GLTFLoader();
+// load는 콜백함수로 들어갈 scene 대상을 파라미터로 받는다. 그 파라미터를 add로 소환해줌.
+// loader.load("../shiba/scene.gltf", function (gltf) {
+//   scene.add(gltf.scene);
+// });
 
-  //*에니메이션 render
-  function animate(time) {
-    requestAnimationFrame(animate);
-    time *= 0.001; //convert time to sec
+//*에니메이션 render
+function animate(time) {
+  requestAnimationFrame(animate);
+  time *= 0.001; //convert time to sec
 
-    cube.rotation.x = time;
-    cube.rotation.y = time;
-    cube1.rotation.x = time;
-    cube1.rotation.y = time;
+  cube.rotation.x = time;
+  cube.rotation.y = time;
+  cube1.rotation.x = time;
+  cube1.rotation.y = time;
 
-    renderer.render(scene, camera);
-  }
-  animate();
-});
-
+  renderer.render(scene, camera);
+}
+animate();
 //반응형 처리(예를 들면 오브젝트가 항상 가운대로 오도록 처리)
 function onWindowResize() {
   //사이즈 조절시 윈도값 가변처리, 종횡비도 일정하게 유지해줌
