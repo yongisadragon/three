@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  overflow-x: hidden;
+  background-color: black;
+}
+
+nav {
+  color: white;
+  position: relative;
+  padding: 1rem 2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.title {
+  color: white;
+  position: absolute;
+  font-size: 2rem;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+}
