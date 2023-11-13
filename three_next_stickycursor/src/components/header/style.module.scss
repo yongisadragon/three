@@ -5,7 +5,6 @@
   justify-content: flex-end;
   padding: 10px;
   box-sizing: border-box;
-  cursor: pointer;
   mix-blend-mode: difference;
   z-index: 1;
   .burger {
@@ -14,6 +13,8 @@
     gap: 8px;
     flex-direction: column;
     padding: 30px;
+    cursor: pointer;
+    // 미세 호버링시 버그 제거
     pointer-events: none;
     &::before,
     &::after {
@@ -26,11 +27,16 @@
     }
   }
   .bounds {
+    // border: 0.5px solid salmon;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    // 미세 호버링시 버그 제거
     pointer-events: all;
+    &:hover {
+      transform: scale(2);
+    }
   }
 }
