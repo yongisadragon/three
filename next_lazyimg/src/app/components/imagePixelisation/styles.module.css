@@ -1,0 +1,17 @@
+.imgContainer {
+  width: 400px;
+  position: relative;
+}
+
+.imgContainer img {
+  width: 100%;
+  height: auto;
+  /* 10px짜리 이미지 필셀화 시키기 */
+  image-rendering: pixelated;
+}
+
+.imgContainer canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

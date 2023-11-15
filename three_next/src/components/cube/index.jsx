@@ -7,6 +7,7 @@ import {
   OrbitControls,
   ScrollControls,
   OrthographicCamera,
+  PerspectiveCamera,
 } from "@react-three/drei";
 import {
   useMotionValue,
@@ -15,6 +16,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { motion } from "framer-motion-3d";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export default function index() {
   const container = useRef(null);
@@ -30,12 +32,24 @@ export default function index() {
   return (
     <div ref={container} className={styles.main}>
       <div className={styles.cube}>
-        <Canvas>
+        <Canvas
+        // camera={{
+        //   fov: 50,
+        //   position: [7, 3, 0],
+        //   near: 0.1,
+        //   far: 20,
+        // }}
+        >
           <ScrollControls pages={10}>
             {/* 1page = 100vh */}
-            <OrbitControls enableZoom={false} enablePan={false} />
+            <OrbitControls
+              enableZoom={true}
+              enablePan={true}
+              maxPolarAngle={Math.PI / 2}
+            />
             <ambientLight intensity={2} />
             <directionalLight position={[1, 1, 1]} />
+            {/* <Model /> */}
             <Cube progress={smoothProgress} />
           </ScrollControls>
         </Canvas>
@@ -43,6 +57,11 @@ export default function index() {
     </div>
   );
 }
+
+const Model = () => {
+  const gltf = useLoader(GLTFLoader, "/scene.gltf");
+  return <primitive object={gltf.scene} scale={1} />;
+};
 
 function Cube({ progress }) {
   const mesh = useRef(null);
