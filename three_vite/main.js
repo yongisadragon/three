@@ -16,6 +16,7 @@ const mat = new THREE.MeshStandardMaterial({
 const mesh = new THREE.Mesh(geo, mat);
 scene.add(mesh);
 
+console.log(mesh);
 //Sizes
 const sizes = {
   width: window.innerWidth,

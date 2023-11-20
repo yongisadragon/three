@@ -1,13 +1,16 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import styles from "./style.module.scss";
+
 import {
   OrbitControls,
   ScrollControls,
   OrthographicCamera,
   PerspectiveCamera,
+  useGLTF,
+  Html,
 } from "@react-three/drei";
 import {
   useMotionValue,
@@ -17,6 +20,7 @@ import {
 } from "framer-motion";
 import { motion } from "framer-motion-3d";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import gsap from "gsap";
 
 export default function index() {
   const container = useRef(null);
@@ -40,27 +44,58 @@ export default function index() {
         //   far: 20,
         // }}
         >
-          <ScrollControls pages={10}>
-            {/* 1page = 100vh */}
-            <OrbitControls
-              enableZoom={true}
-              enablePan={true}
-              maxPolarAngle={Math.PI / 2}
-            />
-            <ambientLight intensity={2} />
-            <directionalLight position={[1, 1, 1]} />
-            {/* <Model /> */}
-            <Cube progress={smoothProgress} />
-          </ScrollControls>
+          <Suspense
+            fallback={
+              <Html>
+                <div style={{ color: "white" }}>기다려주세요</div>
+              </Html>
+            }
+          >
+            <ScrollControls pages={10}>
+              {/* 1page = 100vh */}
+              <OrbitControls
+                enableZoom={true}
+                enableRotate={true}
+                // enablePan={true}
+                // maxPolarAngle={Math.PI / 2}
+                maxAzimuthAngle={Math.PI / 2}
+              />
+              <ambientLight intensity={2} />
+              <directionalLight position={[1, 1, 1]} intensity={2} />
+              <Model />
+              {/* <Cube progress={smoothProgress} /> */}
+            </ScrollControls>
+          </Suspense>
         </Canvas>
       </div>
     </div>
   );
 }
 
-const Model = () => {
-  const gltf = useLoader(GLTFLoader, "/scene.gltf");
-  return <primitive object={gltf.scene} scale={1} />;
+const Model = ({ scale = 1 }) => {
+  const [hovered, hover] = useState(false);
+
+  // const gltf = useLoader(GLTFLoader, "/scene.gltf");
+  const { nodes, materials } = useGLTF("/untitled.glb");
+
+  return (
+    <group dispose={null}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Curve.geometry}
+        material={materials["Material.001"]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.163}
+      />
+    </group>
+    // <primitive
+    //   object={gltf.scene}
+    //   scale={hovered ? scale * 1.1 : scale}
+    //   onPointerOver={(event) => hover(true)}
+    //   onPointerOut={(event) => hover(false)}
+    // />
+  );
 };
 
 function Cube({ progress }) {
