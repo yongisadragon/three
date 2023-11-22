@@ -81,12 +81,10 @@ const Model = ({ scale = 1 }) => {
   return (
     <group dispose={null}>
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.Curve.geometry}
         material={materials["Material.001"]}
         rotation={[Math.PI / 2, 0, 0]}
-        scale={0.163}
+        scale={0.1}
       />
     </group>
     // <primitive
