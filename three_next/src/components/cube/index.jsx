@@ -11,6 +11,8 @@ import {
   PerspectiveCamera,
   useGLTF,
   Html,
+  Environment,
+  Preload,
 } from "@react-three/drei";
 import {
   useMotionValue,
@@ -49,8 +51,8 @@ export default function index() {
               <Html>
                 <div style={{ color: "white" }}>기다려주세요</div>
               </Html>
-            }
-          >
+            }>
+            <Environment files="/mingletest.hdr" background blur={0.1} />
             <ScrollControls pages={10}>
               {/* 1page = 100vh */}
               <OrbitControls
@@ -60,8 +62,8 @@ export default function index() {
                 // maxPolarAngle={Math.PI / 2}
                 maxAzimuthAngle={Math.PI / 2}
               />
-              <ambientLight intensity={2} />
-              <directionalLight position={[1, 1, 1]} intensity={2} />
+              <ambientLight intensity={1} />
+              <directionalLight position={[1, 1, 1]} intensity={10} />
               <Model />
               {/* <Cube progress={smoothProgress} /> */}
             </ScrollControls>
@@ -71,28 +73,34 @@ export default function index() {
     </div>
   );
 }
+useGLTF.preload("/mingletest.glb");
 
 const Model = ({ scale = 1 }) => {
   const [hovered, hover] = useState(false);
 
   // const gltf = useLoader(GLTFLoader, "/scene.gltf");
-  const { nodes, materials } = useGLTF("/untitled.glb");
+  const { nodes, materials } = useGLTF("/studiometal.glb");
+  const { scene } = useGLTF("/studiometal2.glb");
 
   return (
-    <group dispose={null}>
-      <mesh
-        geometry={nodes.Curve.geometry}
-        material={materials["Material.001"]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.1}
-      />
-    </group>
-    // <primitive
-    //   object={gltf.scene}
-    //   scale={hovered ? scale * 1.1 : scale}
-    //   onPointerOver={(event) => hover(true)}
-    //   onPointerOut={(event) => hover(false)}
-    // />
+    // <group dispose={null}>
+    //   <mesh
+    //     castShadow
+    //     receiveShadow
+    //     geometry={nodes.Icosphere.geometry}
+    //     material={materials["metal"]}
+    //     rotation={[Math.PI / 2, 0, 0]}
+    //     scale={0.1}
+    //   />
+    // </group>
+    <primitive
+      // castShadow
+      // receiveShadow
+      object={scene}
+      // scale={hovered ? scale * 1.1 : scale}
+      // onPointerOver={(event) => hover(true)}
+      // onPointerOut={(event) => hover(false)}
+    />
   );
 };
 
