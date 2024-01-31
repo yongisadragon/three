@@ -1,0 +1,9 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vw;
+}
+.main svg {
+  width: 500px;
+}/*# sourceMappingURL=page.module.css.map */

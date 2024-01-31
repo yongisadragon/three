@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vw;
+
+  svg {
+    width: 500px;
+    path {
+      //   display: none;
+    }
+  }
+}
