@@ -4,10 +4,20 @@
   justify-content: center;
   height: 100vw;
 
+  .numbers {
+    font-size: 36px;
+    cursor: pointer;
+  }
+
   svg {
     width: 500px;
+    filter: url("#filter");
     path {
-      //   display: none;
+      display: none;
+    }
+
+    circle {
+      fill: royalblue;
     }
   }
 }
